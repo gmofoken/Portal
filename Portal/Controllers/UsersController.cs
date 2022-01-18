@@ -59,7 +59,7 @@ namespace Portal.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult> Login(Users users)
         {
-            var user = _context.Users.Where(x => x.Password == users.Password && x.Email == users.Email).FirstOrDefault();
+            var user = _context.Users.Where(x => x.Password == users.Password && (x.Email == users.Email || x.Identifier == users.Email)).FirstOrDefault();
 
             if (user != null)
                 return Ok();

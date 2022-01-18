@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,5 +47,34 @@ namespace Portal.Controllers
 
             return subs;
         }
+
+        [HttpPost("submissionsPerModuleReport")]
+        public async Task<ActionResult<IEnumerable>> submissionsPerModuleReport()
+        {
+            var subs = await _context.Submissions.GroupBy(x => x.ModuleCode).ToListAsync();
+
+            var obj = new List<modulesSubmitted>();
+
+            //foreach (var item in subs)
+            //{
+            //    foreach (var item in obj)
+            //    {
+
+            //    }
+            //}
+
+            if (subs == null)
+            {
+                return NotFound();
+            }
+
+            return subs;
+        }
+    }
+
+    public class modulesSubmitted
+    {
+        public string Module { get; set; }
+        public int Submissions { get; set; }
     }
 }

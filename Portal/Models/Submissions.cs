@@ -19,6 +19,8 @@ namespace Portal.Models
         [Key]
         public int SubmissionID { get; set; }
         public string UniqueID { get; set; }
+        public string StudentID { get; set; }
+        public string ModuleCode { get; set; }
         public DateTime SubmitedOn { get; set; } = DateTime.Now;
         public List<Answers> Answers { get; set; }
     }
